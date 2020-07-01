@@ -21,11 +21,11 @@
 title: JSECU blog
 email: jsecu@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Bug Bounty, CTF WriteUps
-baseurl: "/" # the subpath of your site, e.g. /blog
-url: "https://jsecu.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+  CTF,BUG Bounty Writeups
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: xopes
+github_username:  jsecu
 
 # Build settings
 theme: jekyll-theme-midnight
