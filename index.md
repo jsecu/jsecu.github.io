@@ -1,1 +1,1 @@
-Index page
+[About Me](about) 
