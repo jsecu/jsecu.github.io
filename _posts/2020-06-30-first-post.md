@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Lazysysadmin vulnhub walkthrough"
+title:  "Lazysysadmin CTF WriteUp"
 date:   2020-06-30 18:40:20 -0400
 categories: CTFs
 ---
@@ -49,7 +49,7 @@ Well it looks like the user togie can run all commands with root privileges, not
 
 There we go, root!
 
-<center><a href="../../../../index.html">Home</a></center>
+
 
 
 
