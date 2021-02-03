@@ -39,7 +39,7 @@ This was reported and the severity was boosted to a critical.
 
 References:
 
-<a href="https://portswigger.net/research/practical-web-cache-poisoning"></a>
+<a href="https://portswigger.net/research/practical-web-cache-poisoning">https://portswigger.net/research/practical-web-cache-poisoning</a>
 
 
 
