@@ -5,7 +5,7 @@ date:   2020-06-30 18:40:20 -0400
 categories: Writeup BugBounty
 ---
 
-<img src="../../../../../yingyang.jpg"/>
+<img src="../../../../../images/yingyang.jpg"/>
 
 To begin,this is a vulnerability that I found during a bug bounty engagement.I would split this into two parts, or two separate vulnerabilities. The First part was a web cache poisoning via X Headers.This part allowed me to achieve XSS on every endpoint with a combination of two Headers.The next part was a Oauth flow flaw that allowed me to leverage my previously given XSS capabilities into an account takeover through a technique I call cookie overriding.Before I begin explaining this exploit chain, I have to say that since this is a private program I can't disclose the site that it was found on.
 
@@ -14,7 +14,7 @@ Web Cache Poisoning:
 
 This vulnerability is well documented on Portswigger by James Kettle, and this is where I had first heard about so for a more in-depth introduction,I recommend reading that article.However for a quick primer,web cache poisoning is a vulnerability that allows an attacker to poison a HTTP response by injecting a malicious code into a non keyed HTTP request header. A web Cache is basically a way for websites to lower the load on their servers by replaying resources to users without asking the server.They look for specific keys in the the HTTP request to determine if they have already cached the resource and if they have, that's what any user that matches that request gets served.These cache keys could be anything ranging from the URI to the Accept HTTP headers.However there are certain HTTP request headers that are not keyed and can introduce reflected output onto a HTTP response depending on the code implemented. A popular one and the one that'll be exploited in this report is the X-Forwarded-Host header.This header can populated with a XSS payload and used to reflect a XSS payload into a HTTP response. After the cache gets this response and saves it without the unkeyed header, you can consider the cache poisoned and it will pass the response to every user that visits that URL.That's the basis of the attack, but this can be supplemented with another unkeyed header to increase the severity so that you can poison the cache for every URL on the site. This Header is the X-Rewrite-Url header, and this basically rewrites the URN that is being cached. So lets say the URN in a HTTP request is /home, the cache thinks its saving this HTTP response. But if you add the X-Rewrite-Url header, it'll actually load the malicious HTTP response at /evil.The header is usually unkeyed so it'll serve the poisoned response to any user that requests for /home.
 
-<img src="../../../../../web_cache_poisoning">
+<img src="../../../../../images/web_cache_poisoning">
 
 The Exploit Chain(part 1):
 
@@ -24,7 +24,7 @@ Oauth Flaw:
 
 If you not familiar with Oauth, this section will cover the flow of an Authorization Grant which was the grant used in this case. There are four major entities to this grant,the Client, the User, the Authorization server and the Resource Provider.The first step is the User requests access to a Resource.The Oauth Client sees this request and redirects the user to the Authorization server.The User validates their credentials with the Authorization server and if approved, gets an access code. After this the User is redirected back to the client and the client takes this code.The Client then takes this code and validates it with the Authorization server and finally gets an access token. This access token is used to retrieve data from the Resource Provider on behalf of the user. The issue on this site was after the code was sent back it was processed by an URL which took a cookie value that was another URL and appended the code after a hash fragment to the URL in the cookie value and redirected the browser to this location . This allows for anyone that changes the cookie value to redirect the code to an arbitrary location.After that the attacker could just submit the code to the Authorization server and get a access token on behalf of the targeted user. 
 
-<img src="../../../../../oauth_auth_code.png">
+<img src="../../../../../images/oauth_auth_code.png">
 
 Cookie Overriding:
 Normally this wouldn't be a issue due to two factors,the cookie was HTTPOnly and number two, the URL in the cookie was whitelisted to only trusted sites.The second problem was already solved in my case, since the cache poisoning XSS was already on a trusted subdomain. The first problem was the problem that had to get solved.How do you use a XSS to change a cookie value that's HTTPOnly? The answer is that you don't, you make a cookie that looks like the HTTPOnly cookie, and set the path parameter to a certain URN where the cookie was being used.If a browser sees two cookies of the same name, but one has a more specified path, when a HTTP request to that path is requested, it'll choose precedence to the cookie with the specific path.With this I could craft a cookie on the poisoned subdomain using the XSS ,this cookies would work for all subdomains below the root domain and it would set the specific path to the path that initiated the URL in the cookie value.
