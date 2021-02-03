@@ -37,6 +37,19 @@ Conclusion:
 
 This was reported and the severity was boosted to a critical.
 
+References:
+
+https://portswigger.net/research/practical-web-cache-poisoning
+
+
+
+
+
+
+- Connect with me on :Twitter @Pullerze
+
+
+
 
 
 
