@@ -35,7 +35,7 @@ After assembling all the parts, the global poisoned XSS ,the cookie overriding, 
 
 Conclusion:
 
-This was reported and the severity was boosted to a critical.
+This was reported on HackerOne and the severity was boosted to a critical.
 
 References:
 
