@@ -21,19 +21,11 @@ categories: Writeup
  *                                                                                                  
  */
           
-                                       
-      
-      
-      
-          
-                                           
-
-
 ```
-##### DAY1
+## DAY1
 ## **Process Fiber Local Shellcode Execution**
 Local shellcode execution techniques can be used by attackers to spawn malicious code from inside a process.
-Recently the Lazuras group employed this class of technique in order run code in VBA Macros undetected, more information can be found here: https://research.nccgroup.com/2021/01/23/rift-analysing-a-lazarus-shellcode-execution-method/.
+Recently the Lazuras group employed this class of technique in order run code in VBA Macros undetected, more information can be found here: <a href="https://research.nccgroup.com/2021/01/23/rift-analysing-a-lazarus-shellcode-execution-method/">https://research.nccgroup.com/2021/01/23/rift-analysing-a-lazarus-shellcode-execution-method/</a>.
 However in this technique we are abusing the implementation of process fibers in order to run local shellcode. 
 These fibers are essentially lightweight threads that can be scheduled in user mode without the need of assistance from the kernel. Due to this, execution of a process fiber is invisible to the kernel,which makes it a interesting method for offensive purposes. In order to implement a process fiber you would have to convert your current thread into a fiber. 
 Then from there you will be able to schedule sub-fibers that point to your shellcode.
@@ -44,17 +36,17 @@ This will cause a alert due to this being a meterpreter payload for spawning a m
 
 Steps:
 
-- [ ]  1`Convert Current Thread to a Fiber-ConvertThreadToFiber()`
+- [ ]  1`Convert Current Thread to a Fiber- ##### ConvertThreadToFiber()`
 
-- [ ]  2.`Allocate Memory in the Current Process with PAGE_EXECUTE_READWRITE permissions-VirtualAlloc()`
+- [ ]  2.`Allocate Memory in the Current Process with PAGE_EXECUTE_READWRITE permissions- ##### VirtualAlloc()`
 
   ​      *** **`Allocating memory with PAGE_EXECUTE_READWRITE is bad opsec****`
 
-- [ ] 3. `Copy shellcode into allocated memory space - CopyMemory()`
+- [ ] 3. `Copy shellcode into allocated memory space - ##### CopyMemory()`
 
-- [ ] 4.`Start a New fiber pointing to the allocated memory space - CreateFiber()`
+- [ ] 4.`Start a New fiber pointing to the allocated memory space - ##### CreateFiber()`
 
-- [ ] 5.`Switch Fiber Context to newly created Fiber-SwitchFiber()`
+- [ ] 5.`Switch Fiber Context to newly created Fiber- ##### SwitchFiber()`
 
 C Code for implementation:
 
@@ -100,7 +92,7 @@ Ref:
 
 https://docs.microsoft.com/en-us/windows/win32/procthread/fibers
 
-##### DAY2
+## DAY2
 ## WMI Permanent Event Subscription Persistence Technique
 
 Persistence techniques are used by attackers in order to maintain access on a compromised machine in case of a loss of the inital access vector. Procedures like this are used by most APTs and are displayed throughout various attacks. In particular this technique was utilized by APT 29 in a backdoor called POSHSPY. More details can be found here:[`https://www.fireeye.com/blog/threat-research/2017/03/dissecting_one_ofap.html`](https://www.fireeye.com/blog/threat-research/2017/03/dissecting_one_ofap.html) in a writeup by FireEye. This technique using WMI Event Subscription is one that persists through reboots but requires adminstrator privileges. 
@@ -110,7 +102,7 @@ The above query translates to select all events from the __InstanceCreationEvent
 
 C Code: Ported into C from MDsec's article on this topic: [`https://www.mdsec.co.uk/2019/05/persistence-the-continued-or-prolonged-existence-of-something-part-3-wmi-event-subscription/`](https://www.mdsec.co.uk/2019/05/persistence-the-continued-or-prolonged-existence-of-something-part-3-wmi-event-subscription/)  (Used CommandLineEventConsumer instead of ActiveScriptEventConsumer)
 
-Compile with this command: `gcc WmiSub.c -o Wmisub.exe -lole32 -loleaut32 -lwbemuuid`
+Compile with this command: `##### gcc WmiSub.c -o Wmisub.exe -lole32 -loleaut32 -lwbemuuid`
 
 If you run this code, all it does is make a test file saying success in your C Drive, after you open notepad.exe.
 
@@ -385,7 +377,7 @@ ref: https://www.mdsec.co.uk/2019/05/persistence-the-continued-or-prolonged-exis
 
 https://docs.microsoft.com/en-us/windows/win32/wmisdk/receiving-a-wmi-event
 
-##### DAY3
+## DAY3
 ## Windows Anti-Emulation Tactics by abusing Non-Emulated API calls
 
 While there are signature based AVs, in recent years there has been a
@@ -418,7 +410,7 @@ int main(int argc, char **argv){
 
 ref:https://docs.microsoft.com/en-us/windows/win32/
 
-##### DAY4
+## DAY4
 ## Lateral Movement with Named Pipes
 
 When using named pipes which utilize the SMB protocol, you can establish a client,server connection between two endpoints. The server endpoint will be on your compromised host and the client will be on the machine your compromised user has access to in some way. A few known methods of doing this in the past, have been **`PsExec`** and Cobalt's Strike implementation **`PsExec(psh)`**. The former achieved this by logging into the $ADMIN share and dropping a exe file, that established a named pipe connection to the compromised machine. The later achieved this by logging into the $ADMIN share, but instead of dropping an exe file it instead ran base64 encoded Powershell to establish a named pipe connection to the compromised machine. The Poc below is two exes, a server named pipe and a client named pipe. The scenario is that you have already connected to the $ADMIN share and dropped your client exe unto the machine, and it simply executes one command and writes it back through named pipe to your compromised machine.
@@ -608,7 +600,7 @@ LSTATUS success2 = RegOpenKeyEx(HKEY_CURRENT_USER,TEXT("\\SYSTEM\\ControlSet001\
 }
 
 ```
-##### Day7
+## Day7
 ## Active Directory Enumeration with LDAP queries 
 
 For the last day of 7daysofRed, we're going to be covering LDAP queries.These are used in almost every Active Directory enumeration tool, such as PowerView and BloodHound. In an Active Directory environment there are several protocols that are used in order to transmit data ,two of the major ones being  Kerberos and LDAP. Since we are addressing LDAP in this post, Kerberos is out of scope for now. LDAP stands for Lightweight Directory Access Protocol, and its server is usually hosted on a domain controller. A domain controller is where all your data for every domain user ,group and host lives in the form of objects,and ntds.dit being the Active Directory Database file is also stored in the domain controller. LDAP is usually used to query these objects from the domain controller through the use of LDAP queries. In most cases once you have access to any authenicated user on a network, you can query the domain controller through LDAP. Having a look at LDAP user search request in wireshark may shed some light on what's going on when you send a query out to a domain controller. 
