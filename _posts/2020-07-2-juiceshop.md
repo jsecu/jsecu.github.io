@@ -1,8 +1,9 @@
 ---
 layout: post
 title:  "Pentesting Workshop: Working with OWASP JuiceShop"
+image: /images/pentester.png
 date:   2020-07-3 14:05
-categories: Workshop
+categories: header
 ---
 
 This is a simple introduction of OWASP Juiceshop that I presented at day 2 of my pentesting workshop. It covers 5 of the OWASP top 10 and gives examples of where you can find them in the JuiceShop platform. This is meant to be a practical follow along guide with the JuiceShop platform so if you use this guide to learn web application pentesting, it would be advised to download JuiceShop beforehand.
