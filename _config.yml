@@ -2,11 +2,11 @@
 email: okay@unknown.io
 baseurl: ""
 permalink: /:year/:month/:day/:title/
-google_analytics:
+google_analytics: n
 
-name: 
+name: JSECU
 title: JSECU
-description: 
+description: JSECU
   
 url: 
 twitter_username: Pullerze
@@ -15,20 +15,20 @@ social:
   - name: twitter
     url: https://twitter.com/Pullerze
   - name: instagram
-    url: 
+    url: #
   - name: linkedin
-    url: 
+    url: #
   - name: github
     url: https://github.com/jsecu
   - name: codepen
-    url: 
+    url: #
 
 # Contact settings
 contact_img: /assets/images/placeholder-28.jpg
-formcarry: 
+formcarry: #
 
 # Disqus settings
-disqus:
+disqus: #
 
 # MailChimp settings
 mailchimp_action:
@@ -36,9 +36,9 @@ mailchimp_input:
 
 # Author settings
 author:
-  - name:
-    bio:
-    url: 
+  - name: JSECU
+    bio: JSECU
+    url: JSECU
 
 # Pagination settings
 pagination:
