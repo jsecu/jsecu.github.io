@@ -2,6 +2,7 @@
 layout: post
 title: "7 days of Red"
 date: 2021-6-31 0:00:00 -0400
+<<<<<<< HEAD
 image: /images/red.jpg
 categories: Writeup
 ---
@@ -10,6 +11,28 @@ categories: Writeup
 
 A compilation of the whole week of the 7daysofRed series all in one large blogpost.                                                                                  
 
+=======
+categories: Writeup
+---
+
+
+​         A compilation of the whole week of the 7daysofRed series all in one large blogpost.                                                                                  
+
+```
+
+
+/***
+ *    ███████╗    ██████╗  █████╗ ██╗   ██╗███████╗     ██████╗ ███████╗    ██████╗ ███████╗██████╗ 
+ *    ╚════██║    ██╔══██╗██╔══██╗╚██╗ ██╔╝██╔════╝    ██╔═══██╗██╔════╝    ██╔══██╗██╔════╝██╔══██╗
+ *        ██╔╝    ██║  ██║███████║ ╚████╔╝ ███████╗    ██║   ██║█████╗      ██████╔╝█████╗  ██║  ██║
+ *       ██╔╝     ██║  ██║██╔══██║  ╚██╔╝  ╚════██║    ██║   ██║██╔══╝      ██╔══██╗██╔══╝  ██║  ██║
+ *       ██║      ██████╔╝██║  ██║   ██║   ███████║    ╚██████╔╝██║         ██║  ██║███████╗██████╔╝
+ *       ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝     ╚═════╝ ╚═╝         ╚═╝  ╚═╝╚══════╝╚═════╝ 
+ *                                                                                                  
+ */
+          
+```
+>>>>>>> 63d34e1a1a2bec6a9bb93652e9e00837b3b51c07
 ## DAY1
 ## **Process Fiber Local Shellcode Execution**
 Local shellcode execution techniques can be used by attackers to spawn malicious code from inside a process.
@@ -24,6 +47,7 @@ This will cause a alert due to this being a meterpreter payload for spawning a m
 
 Steps:
 
+<<<<<<< HEAD
 - [ ]  1`Convert Current Thread to a Fiber- ConvertThreadToFiber()`
 
 - [ ]  2.`Allocate Memory in the Current Process with PAGE_EXECUTE_READWRITE permissions- VirtualAlloc()`
@@ -35,6 +59,19 @@ Steps:
 - [ ] 4.`Start a New fiber pointing to the allocated memory space -CreateFiber()`
 
 - [ ] 5.`Switch Fiber Context to newly created Fiber- SwitchFiber()`
+=======
+- [ ]  1`Convert Current Thread to a Fiber- ##### ConvertThreadToFiber()`
+
+- [ ]  2.`Allocate Memory in the Current Process with PAGE_EXECUTE_READWRITE permissions- ##### VirtualAlloc()`
+
+  ​      *** **`Allocating memory with PAGE_EXECUTE_READWRITE is bad opsec****`
+
+- [ ] 3. `Copy shellcode into allocated memory space - ##### CopyMemory()`
+
+- [ ] 4.`Start a New fiber pointing to the allocated memory space - ##### CreateFiber()`
+
+- [ ] 5.`Switch Fiber Context to newly created Fiber- ##### SwitchFiber()`
+>>>>>>> 63d34e1a1a2bec6a9bb93652e9e00837b3b51c07
 
 C Code for implementation:
 
@@ -531,9 +568,15 @@ return 0;
 
 As stated on Day 3, sandbox evasion is a fundamental apart of any attacker's strategy to infilrate a network. The chance of a piece of malware touching a virtual environment is extremely high since most host antivirus and email antivirus programs utilize a sandbox. In order for an attacker to identify a virtual environment they will employ a series of checks included in their stage 0 payload. In this post we'll discuss enumerating registry keys and checking for artifacts to indicate a virtual environment.There are a number of virtual environment software such as VMware,VirtualBox,Sandboxie,Wine,Xen and many more. For each of these environments there are registry keys identifying them and their particular settings. For Example:
 
+<<<<<<< HEAD
  VMWare:
 
 | HKLM\SYSTEM\CurrentControlSet\Enum\PCI\VEN_15AD              |      |
+=======
+#### VMWare:
+
+| HKLM\SYSTEM\CurrentControlSet\Enum\PCI\VEN_15AD*             |      |
+>>>>>>> 63d34e1a1a2bec6a9bb93652e9e00837b3b51c07
 | ------------------------------------------------------------ | ---- |
 | HKCU\SOFTWARE\VMware, Inc.\VMware Tools                      |      |
 | HKLM\SOFTWARE\VMware, Inc.\VMware Tools                      |      |
