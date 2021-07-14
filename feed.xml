@@ -5,64 +5,29 @@
     <description>JSECU</description>
     <link>http://localhost:4000</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 14 Jul 2021 12:15:45 -0400</pubDate>
-    <lastBuildDate>Wed, 14 Jul 2021 12:15:45 -0400</lastBuildDate>
+    <pubDate>Wed, 14 Jul 2021 14:23:49 -0400</pubDate>
+    <lastBuildDate>Wed, 14 Jul 2021 14:23:49 -0400</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
-        <title></title>
-        <description>&lt;p&gt;&lt;img src=&quot;../../../../../images/red.jpg&quot; /&gt;&lt;/p&gt;
+        <title>7 days of Red</title>
+        <description>&lt;p&gt;&lt;img src=&quot;../../../../images/red.jpg&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;A compilation of the whole week of the 7daysofRed series all in one large blogpost.&lt;/p&gt;
 
-&lt;p&gt;=======
-categories: Writeup
-—&lt;/p&gt;
-
-&lt;p&gt;​         A compilation of the whole week of the 7daysofRed series all in one large blogpost.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-
-/***
- *    ███████╗    ██████╗  █████╗ ██╗   ██╗███████╗     ██████╗ ███████╗    ██████╗ ███████╗██████╗ 
- *    ╚════██║    ██╔══██╗██╔══██╗╚██╗ ██╔╝██╔════╝    ██╔═══██╗██╔════╝    ██╔══██╗██╔════╝██╔══██╗
- *        ██╔╝    ██║  ██║███████║ ╚████╔╝ ███████╗    ██║   ██║█████╗      ██████╔╝█████╗  ██║  ██║
- *       ██╔╝     ██║  ██║██╔══██║  ╚██╔╝  ╚════██║    ██║   ██║██╔══╝      ██╔══██╗██╔══╝  ██║  ██║
- *       ██║      ██████╔╝██║  ██║   ██║   ███████║    ╚██████╔╝██║         ██║  ██║███████╗██████╔╝
- *       ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝     ╚═════╝ ╚═╝         ╚═╝  ╚═╝╚══════╝╚═════╝ 
- *                                                                                                  
- */
-          
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;blockquote&gt;
-  &lt;blockquote&gt;
-    &lt;blockquote&gt;
-      &lt;blockquote&gt;
-        &lt;blockquote&gt;
-          &lt;blockquote&gt;
-            &lt;blockquote&gt;
-              &lt;p&gt;63d34e1a1a2bec6a9bb93652e9e00837b3b51c07&lt;/p&gt;
-              &lt;h2 id=&quot;day1&quot;&gt;DAY1&lt;/h2&gt;
-              &lt;h2 id=&quot;process-fiber-local-shellcode-execution&quot;&gt;&lt;strong&gt;Process Fiber Local Shellcode Execution&lt;/strong&gt;&lt;/h2&gt;
-              &lt;p&gt;Local shellcode execution techniques can be used by attackers to spawn malicious code from inside a process.
+&lt;h2 id=&quot;day1&quot;&gt;DAY1&lt;/h2&gt;
+&lt;h2 id=&quot;process-fiber-local-shellcode-execution&quot;&gt;&lt;strong&gt;Process Fiber Local Shellcode Execution&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Local shellcode execution techniques can be used by attackers to spawn malicious code from inside a process.
 Recently the Lazuras group employed this class of technique in order run code in VBA Macros undetected, more information can be found here: &lt;a href=&quot;https://research.nccgroup.com/2021/01/23/rift-analysing-a-lazarus-shellcode-execution-method/&quot;&gt;https://research.nccgroup.com/2021/01/23/rift-analysing-a-lazarus-shellcode-execution-method/&lt;/a&gt;.
 However in this technique we are abusing the implementation of process fibers in order to run local shellcode. 
 These fibers are essentially lightweight threads that can be scheduled in user mode without the need of assistance from the kernel. Due to this, execution of a process fiber is invisible to the kernel,which makes it a interesting method for offensive purposes. In order to implement a process fiber you would have to convert your current thread into a fiber. 
 Then from there you will be able to schedule sub-fibers that point to your shellcode.
 Lastly you just need to switch to the shellcode fiber context in order to execute it.&lt;/p&gt;
-            &lt;/blockquote&gt;
-          &lt;/blockquote&gt;
-        &lt;/blockquote&gt;
-      &lt;/blockquote&gt;
-    &lt;/blockquote&gt;
-  &lt;/blockquote&gt;
-&lt;/blockquote&gt;
 
 &lt;p&gt;This will cause a alert due to this being a meterpreter payload for spawning a messagebox*&lt;/p&gt;
 
 &lt;p&gt;Steps:&lt;/p&gt;
 
-&lt;p&gt;«««&amp;lt; HEAD&lt;/p&gt;
 &lt;ul class=&quot;task-list&quot;&gt;
   &lt;li class=&quot;task-list-item&quot;&gt;
     &lt;p&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;1&lt;code class=&quot;highlighter-rouge&quot;&gt;Convert Current Thread to a Fiber- ConvertThreadToFiber()&lt;/code&gt;&lt;/p&gt;
@@ -78,39 +43,8 @@ Lastly you just need to switch to the shellcode fiber context in order to execut
   &lt;li class=&quot;task-list-item&quot;&gt;
     &lt;p&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;4.&lt;code class=&quot;highlighter-rouge&quot;&gt;Start a New fiber pointing to the allocated memory space -CreateFiber()&lt;/code&gt;&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;
-    &lt;h1 id=&quot;--5switch-fiber-context-to-newly-created-fiber--switchfiber&quot;&gt;[ ] 5.&lt;code class=&quot;highlighter-rouge&quot;&gt;Switch Fiber Context to newly created Fiber- SwitchFiber()&lt;/code&gt;&lt;/h1&gt;
-  &lt;/li&gt;
   &lt;li class=&quot;task-list-item&quot;&gt;
-    &lt;p&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;1&lt;code class=&quot;highlighter-rouge&quot;&gt;Convert Current Thread to a Fiber- ##### ConvertThreadToFiber()&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;
-    &lt;p&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;2.&lt;code class=&quot;highlighter-rouge&quot;&gt;Allocate Memory in the Current Process with PAGE_EXECUTE_READWRITE permissions- ##### VirtualAlloc()&lt;/code&gt;&lt;/p&gt;
-
-    &lt;p&gt;​      *** **&lt;code class=&quot;highlighter-rouge&quot;&gt;Allocating memory with PAGE_EXECUTE_READWRITE is bad opsec****&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;
-    &lt;p&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;3. &lt;code class=&quot;highlighter-rouge&quot;&gt;Copy shellcode into allocated memory space - ##### CopyMemory()&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;
-    &lt;p&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;4.&lt;code class=&quot;highlighter-rouge&quot;&gt;Start a New fiber pointing to the allocated memory space - ##### CreateFiber()&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;5.&lt;code class=&quot;highlighter-rouge&quot;&gt;Switch Fiber Context to newly created Fiber- ##### SwitchFiber()&lt;/code&gt;
-    &lt;blockquote&gt;
-      &lt;blockquote&gt;
-        &lt;blockquote&gt;
-          &lt;blockquote&gt;
-            &lt;blockquote&gt;
-              &lt;blockquote&gt;
-                &lt;blockquote&gt;
-                  &lt;p&gt;63d34e1a1a2bec6a9bb93652e9e00837b3b51c07&lt;/p&gt;
-                &lt;/blockquote&gt;
-              &lt;/blockquote&gt;
-            &lt;/blockquote&gt;
-          &lt;/blockquote&gt;
-        &lt;/blockquote&gt;
-      &lt;/blockquote&gt;
-    &lt;/blockquote&gt;
+    &lt;p&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;5.&lt;code class=&quot;highlighter-rouge&quot;&gt;Switch Fiber Context to newly created Fiber- SwitchFiber()&lt;/code&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -601,42 +535,70 @@ that could be used for this check is &lt;strong&gt;FsAlloc&lt;/strong&gt;.&lt;/p
 
 &lt;p&gt;As stated on Day 3, sandbox evasion is a fundamental apart of any attacker’s strategy to infilrate a network. The chance of a piece of malware touching a virtual environment is extremely high since most host antivirus and email antivirus programs utilize a sandbox. In order for an attacker to identify a virtual environment they will employ a series of checks included in their stage 0 payload. In this post we’ll discuss enumerating registry keys and checking for artifacts to indicate a virtual environment.There are a number of virtual environment software such as VMware,VirtualBox,Sandboxie,Wine,Xen and many more. For each of these environments there are registry keys identifying them and their particular settings. For Example:&lt;/p&gt;
 
-&lt;p&gt;«««&amp;lt; HEAD
- VMWare:&lt;/p&gt;
+&lt;p&gt;VMWare:&lt;/p&gt;
 
-&lt;h1 id=&quot;-hklmsystemcurrentcontrolsetenumpciven_15ad--------------------&quot;&gt;| HKLM\SYSTEM\CurrentControlSet\Enum\PCI\VEN_15AD              |      |&lt;/h1&gt;
-&lt;h4 id=&quot;vmware&quot;&gt;VMWare:&lt;/h4&gt;
-
-&lt;p&gt;| HKLM\SYSTEM\CurrentControlSet\Enum\PCI\VEN_15AD*             |      |&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;blockquote&gt;
-    &lt;blockquote&gt;
-      &lt;blockquote&gt;
-        &lt;blockquote&gt;
-          &lt;blockquote&gt;
-            &lt;blockquote&gt;
-              &lt;p&gt;63d34e1a1a2bec6a9bb93652e9e00837b3b51c07
-| ———————————————————— | —- |
-| HKCU\SOFTWARE\VMware, Inc.\VMware Tools                      |      |
-| HKLM\SOFTWARE\VMware, Inc.\VMware Tools                      |      |
-| HKLM\SYSTEM\ControlSet001\Services\vmdebug                   |      |
-| HKLM\SYSTEM\ControlSet001\Services\vmmouse                   |      |
-| HKLM\SYSTEM\ControlSet001\Services\VMTools                   |      |
-| HKLM\SYSTEM\ControlSet001\Services\VMMEMCTL                  |      |
-| HKLM\SYSTEM\ControlSet001\Services\vmware                    |      |
-| HKLM\SYSTEM\ControlSet001\Services\vmci                      |      |
-| HKLM\SYSTEM\ControlSet001\Services\vmx86                     |      |
-| HKLM\SYSTEM\CurrentControlSet\Enum\IDE\CdRomNECVMWar_VMware_IDE_CD* |      |
-| HKLM\SYSTEM\CurrentControlSet\Enum\IDE\CdRomNECVMWar_VMware_SATA_CD* |      |
-| HKLM\SYSTEM\CurrentControlSet\Enum\IDE\DiskVMware_Virtual_IDE_Hard_Drive* |      |
-| HKLM\SYSTEM\CurrentControlSet\Enum\IDE\DiskVMware_Virtual_SATA_Hard_Drive* |      |&lt;/p&gt;
-            &lt;/blockquote&gt;
-          &lt;/blockquote&gt;
-        &lt;/blockquote&gt;
-      &lt;/blockquote&gt;
-    &lt;/blockquote&gt;
-  &lt;/blockquote&gt;
-&lt;/blockquote&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;HKLM\SYSTEM\CurrentControlSet\Enum\PCI\VEN_15AD&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;HKCU\SOFTWARE\VMware, Inc.\VMware Tools&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;HKLM\SOFTWARE\VMware, Inc.\VMware Tools&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;HKLM\SYSTEM\ControlSet001\Services\vmdebug&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;HKLM\SYSTEM\ControlSet001\Services\vmmouse&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;HKLM\SYSTEM\ControlSet001\Services\VMTools&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;HKLM\SYSTEM\ControlSet001\Services\VMMEMCTL&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;HKLM\SYSTEM\ControlSet001\Services\vmware&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;HKLM\SYSTEM\ControlSet001\Services\vmci&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;HKLM\SYSTEM\ControlSet001\Services\vmx86&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;HKLM\SYSTEM\CurrentControlSet\Enum\IDE\CdRomNECVMWar_VMware_IDE_CD*&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;HKLM\SYSTEM\CurrentControlSet\Enum\IDE\CdRomNECVMWar_VMware_SATA_CD*&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;HKLM\SYSTEM\CurrentControlSet\Enum\IDE\DiskVMware_Virtual_IDE_Hard_Drive*&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;HKLM\SYSTEM\CurrentControlSet\Enum\IDE\DiskVMware_Virtual_SATA_Hard_Drive*&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;*Credits to Checkpoint Security for the Table&lt;/p&gt;
 
@@ -760,10 +722,12 @@ that could be used for this check is &lt;strong&gt;FsAlloc&lt;/strong&gt;.&lt;/p
 &lt;p&gt;Thanks for reading the 7daysofRed series, hopefully you learned something new or refreshed on some old details.More educational and research blog posts coming soon, so stay tuned.&lt;/p&gt;
 
 </description>
-        <pubDate>Wed, 14 Jul 2021 12:15:45 -0400</pubDate>
-        <link>http://localhost:4000/2021/07/14/2021-6-3-7daysofRed/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/07/14/2021-6-3-7daysofRed/</guid>
+        <pubDate>Thu, 01 Jul 2021 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2021/07/01/7daysofRed/</link>
+        <guid isPermaLink="true">http://localhost:4000/2021/07/01/7daysofRed/</guid>
         
+        
+        <category>Writeup</category>
         
       </item>
     
